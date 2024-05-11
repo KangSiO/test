@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Object Display</title>
+<!-- A-Frame 라이브러리 추가 -->
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+<a-scene>
+  <!-- 오브젝트 불러오기 -->
+  <a-gltf-model id="object" src="n.glb" scale="300 300 300" position="0 0 0"></a-gltf-model>
+
+  <!-- 카메라 -->
+  <a-entity camera position="0 0 200"></a-entity>
+</a-scene>
+
+<script>
+  // 매 프레임마다 오브젝트를 왼쪽으로 회전시키는 함수
+  function rotateObject() {
+    var object = document.querySelector("#object");
+    var rotation = object.getAttribute("rotation");
+    rotation.y += 360 / (3 * 60); // 3초에 한 바퀴 회전
+    object.setAttribute("rotation", rotation);
+  }
+
+  // 매 프레임마다 오브젝트를 회전
+  setInterval(rotateObject, 16);
+</script>
+</body>
+</html>
